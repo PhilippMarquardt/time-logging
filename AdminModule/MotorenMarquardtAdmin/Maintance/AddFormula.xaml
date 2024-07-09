@@ -1,0 +1,187 @@
+﻿<UserControl
+    x:Class="MotorenMarquardtAdminModule.AddFormula"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MotorenMarquardtAdminModule"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="700"
+    Padding="5"
+    Background="{DynamicResource MaterialDesignBackground}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    mc:Ignorable="d">
+    <Grid>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <materialDesign:Card Margin="10" Padding="32">
+                <Button
+                    Height="Auto"
+                    Margin="0"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    CommandTarget="{Binding ElementName=AddTask}"
+                    Content="Auftrag hinzufügen"
+                    FontSize="30"
+                    Foreground="Black" />
+            </materialDesign:Card>
+            <materialDesign:Card Margin="10" Padding="32">
+                <Button
+                    Height="Auto"
+                    Margin="0"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    CommandTarget="{Binding ElementName=AddEmployee}"
+                    Content="Mitarbeiter hinzufügen"
+                    FontSize="30"
+                    Foreground="Black" />
+            </materialDesign:Card>
+        </WrapPanel>
+        <materialDesign:DialogHost x:Name="AddTask" IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="5">
+                    <StackPanel Margin="25" Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            Margin="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Kind="SortNumeric" />
+                        <TextBox
+                            x:Name="txtBoxTaskNumber"
+                            Margin="10"
+                            materialDesign:HintAssist.FloatingScale="0.5"
+                            materialDesign:HintAssist.Hint="Auftragsnummer"
+                            materialDesign:HintAssist.IsFloating="True"
+                            BorderBrush="Transparent"
+                            BorderThickness="0,0,1,0"
+                            FontSize="25"
+                            TextChanged="txtBoxTaskNumber_TextChanged" />
+                    </StackPanel>
+                    <StackPanel Margin="25" Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            Margin="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Kind="Textbox" />
+                        <TextBox
+                            x:Name="txtTaskCustomer"
+                            Margin="10"
+                            materialDesign:HintAssist.FloatingScale="0.5"
+                            materialDesign:HintAssist.Hint="Kundenname"
+                            materialDesign:HintAssist.IsFloating="True"
+                            FontSize="25" />
+                    </StackPanel>
+                    <StackPanel Margin="25" Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            Margin="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Kind="Details" />
+                        <TextBox
+                            x:Name="txtTaskDescription"
+                            Margin="10"
+                            materialDesign:HintAssist.FloatingScale="0.5"
+                            materialDesign:HintAssist.Hint="Beschreibung"
+                            materialDesign:HintAssist.IsFloating="True"
+                            FontSize="25" />
+                    </StackPanel>
+                    <StackPanel Margin="25" Orientation="Horizontal">
+                        <Button
+                            Width="Auto"
+                            Height="Auto"
+                            Margin="10"
+                            Padding="5"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Abbrechen"
+                            FontSize="25"
+                            Foreground="Black" />
+                        <Button
+                            x:Name="btnAddTask"
+                            Width="Auto"
+                            Height="Auto"
+                            Margin="10"
+                            Padding="5"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="btnAddTask_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="OK"
+                            FontSize="25"
+                            Foreground="Black" />
+                    </StackPanel>
+                </StackPanel>
+
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+
+        <materialDesign:DialogHost
+            x:Name="AddEmployee"
+            DialogClosing="AddEmployee_DialogClosing"
+            IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="5">
+                    <StackPanel
+                        Margin="25"
+                        FocusManager.FocusedElement="{Binding ElementName=txtBoxEmployeeName}"
+                        Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            Margin="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Kind="Worker" />
+                        <TextBox
+                            x:Name="txtBoxEmployeeName"
+                            Margin="10"
+                            materialDesign:HintAssist.FloatingScale="0.5"
+                            materialDesign:HintAssist.Hint="Name"
+                            materialDesign:HintAssist.IsFloating="True"
+                            FontSize="25" />
+                    </StackPanel>
+                    <StackPanel Margin="25" Orientation="Horizontal">
+                        <Button
+                            Width="Auto"
+                            Height="Auto"
+                            Margin="10"
+                            Padding="5"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Abbrechen"
+                            FontSize="25"
+                            Foreground="Black" />
+                        <Button
+                            x:Name="btnAddEmployee"
+                            Width="Auto"
+                            Height="Auto"
+                            Margin="10"
+                            Padding="5"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="btnAddEmployee_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="OK"
+                            FontSize="25"
+                            Foreground="Black" />
+                    </StackPanel>
+                </StackPanel>
+
+            </materialDesign:DialogHost.DialogContent>
+
+        </materialDesign:DialogHost>
+    </Grid>
+</UserControl>

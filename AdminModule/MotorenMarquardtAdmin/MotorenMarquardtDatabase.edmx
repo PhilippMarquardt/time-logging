@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MotorenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auftrag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kunde" Type="nvarchar" MaxLength="50" />
+          <Property Name="Auftragsnummer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Beschreibung" Type="nvarchar" MaxLength="50" />
+          <Property Name="GeplanteZeit" Type="time" Precision="7" />
+          <Property Name="Beendet" Type="bit" />
+        </EntityType>
+        <EntityType Name="Mitarbeiter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mitarbeiter" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Zeiten">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuftragID" Type="int" />
+          <Property Name="Mitarbeiter" Type="nvarchar" MaxLength="50" />
+          <Property Name="startTime" Type="datetime" />
+          <Property Name="endTime" Type="datetime" />
+          <Property Name="Beendet" Type="bit" />
+          <Property Name="Nachgetragen" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MotorenModelStoreContainer">
+          <EntitySet Name="Auftrag" EntityType="Self.Auftrag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mitarbeiter" EntityType="Self.Mitarbeiter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zeiten" EntityType="Self.Zeiten" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MotorenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auftrag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kunde" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Auftragsnummer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GeplanteZeit" Type="Time" Precision="7" />
+          <Property Name="Beendet" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Mitarbeiter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mitarbeiter1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Zeiten">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuftragID" Type="Int32" />
+          <Property Name="Mitarbeiter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="startTime" Type="DateTime" Precision="3" />
+          <Property Name="endTime" Type="DateTime" Precision="3" />
+          <Property Name="Beendet" Type="Boolean" />
+          <Property Name="Nachgetragen" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MotorenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auftrag" EntityType="Self.Auftrag" />
+          <EntitySet Name="Mitarbeiter" EntityType="Self.Mitarbeiter" />
+          <EntitySet Name="Zeiten" EntityType="Self.Zeiten" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MotorenModelStoreContainer" CdmEntityContainer="MotorenEntities">
+          <EntitySetMapping Name="Auftrag">
+            <EntityTypeMapping TypeName="MotorenModel.Auftrag">
+              <MappingFragment StoreEntitySet="Auftrag">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Kunde" ColumnName="Kunde" />
+                <ScalarProperty Name="Auftragsnummer" ColumnName="Auftragsnummer" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="GeplanteZeit" ColumnName="GeplanteZeit" />
+                <ScalarProperty Name="Beendet" ColumnName="Beendet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mitarbeiter">
+            <EntityTypeMapping TypeName="MotorenModel.Mitarbeiter">
+              <MappingFragment StoreEntitySet="Mitarbeiter">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Mitarbeiter1" ColumnName="Mitarbeiter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zeiten">
+            <EntityTypeMapping TypeName="MotorenModel.Zeiten">
+              <MappingFragment StoreEntitySet="Zeiten">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AuftragID" ColumnName="AuftragID" />
+                <ScalarProperty Name="Mitarbeiter" ColumnName="Mitarbeiter" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="Beendet" ColumnName="Beendet" />
+                <ScalarProperty Name="Nachgetragen" ColumnName="Nachgetragen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
